@@ -467,6 +467,13 @@ class From(object):
     def where(self, pred):
         """
         Filters items in the sequence to only those that match the provided
+        predicate.
+        """
+        return From(item for item in self.seq if pred(item))
+
+    def wherei(self, pred):
+        """
+        Filters items in the sequence to only those that match the provided
         predicate.  The predicate must accept two parameters.  The first being
         the item in the sequence, and the second being the index of the item.
         """

@@ -360,5 +360,10 @@ class FromTestCase(unittest.TestCase):
 
     def test_where_filtersItemsFromTheSequenceThatDontMatchThePredicate(self):
         self.assertEquals(
-            From(self.items).where(lambda item, i: item > 5).tolist(),
+            From(self.items).where(lambda item: item > 5).tolist(),
+            [6, 7, 8, 9, 10])
+
+    def test_wherei_filtersItemsFromTheSequenceThatDontMatchThePredicate(self):
+        self.assertEquals(
+            From(self.items).wherei(lambda item, i: item > 5).tolist(),
             [6, 7, 8, 9, 10])
