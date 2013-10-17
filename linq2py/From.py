@@ -419,7 +419,7 @@ class From(object):
                 if selector(item, index):
                     yield item
                 else:
-                     break
+                    break
         return From(item for item in takegenerator())
 
     def toarray(self, typecode):
