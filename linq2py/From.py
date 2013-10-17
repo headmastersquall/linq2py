@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# TODO: Add create a orderby class that contains a thenby method.
+# TODO: Add tolookup(keyselector)
+
 import itertools
 from array import array
 from collections import OrderedDict
@@ -22,8 +25,7 @@ class From(object):
         self.seq = seq
 
     def __iter__(self):
-        for item in self.seq:
-            yield item
+        return (item for item in self.seq)
 
     def aggregate(self, accumulatorfn, seed=0, resultfn=identity):
         """
