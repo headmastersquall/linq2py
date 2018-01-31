@@ -2,6 +2,8 @@
 
 # TODO: Add create a orderby class that contains a thenby method.
 # TODO: Add tolookup(keyselector)
+# TODO: Add comparer overloads
+# TODO: Add new LINQ methods
 
 import itertools
 from array import array
@@ -334,7 +336,7 @@ class From(object):
 
     def sequence_equal(self, seq):
         """
-        Returns True if boths sequences contain the same data.
+        Returns True if both sequences contain the same data.
         """
         seq1 = self.tolist()
         seq2 = From(seq).tolist()
@@ -360,7 +362,7 @@ class From(object):
 
     def singleordefault(self, default, pred=lambda x: True):
         """
-        Returns the default value if the sequence is empty, otherwize calls
+        Returns the default value if the sequence is empty, otherwise calls
         single.
         """
         s1, s2 = itertools.tee(self.seq)
