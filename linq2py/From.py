@@ -83,7 +83,7 @@ class From(object):
         """
         return len([x for x in self.seq if x == item]) >= 1
 
-    def count(self, pred=lambda x: True):
+    def count(self, pred=identity):
         """
         Counts the number of items in the sequence.  An optional predicate can
         be provided and only items that are given to the predicate that return
@@ -133,7 +133,7 @@ class From(object):
         return From(item for item in self.seq
                     if item not in otherseq)
 
-    def first(self, pred=lambda x: True):
+    def first(self, pred=identity):
         """
         Returns the first item in the sequence.  If a predicate is provided,
         return the first item in the sequence that returns True when applied
@@ -143,7 +143,7 @@ class From(object):
             if pred(item):
                 return item
 
-    def firstordefault(self, default, pred=lambda x: True):
+    def firstordefault(self, default, pred=identity):
         """
         Returns the first item in the sequence.  If no item is matches the
         predicate, the default value is returned.
@@ -237,7 +237,7 @@ class From(object):
 
         return From(resultselector(out, in_) for out, in_ in joingenerator())
 
-    def last(self, pred=lambda x: True):
+    def last(self, pred=identity):
         """
         Returns the last element in the sequence.
         """
@@ -250,7 +250,7 @@ class From(object):
                 "No items in the sequence matched the given predicate")
         return last
 
-    def lastordefault(self, default, pred=lambda x: True):
+    def lastordefault(self, default, pred=identity):
         """
         Returns the last item in the sequence, or the value provided if no item
         was found.
@@ -260,14 +260,14 @@ class From(object):
         except IndexError:
             return default
 
-    def max(self, pred=lambda x: True):
+    def max(self, pred=identity):
         """
         Returns the item with the highest value and meets the provided
         predicate.
         """
         return max(itertools.ifilter(pred, self.seq))
 
-    def min(self, pred=lambda x: True):
+    def min(self, pred=identity):
         """
         Returns the item with the smallest value and meets the provided
         predicate.
@@ -349,7 +349,7 @@ class From(object):
                 return False
         return True
 
-    def single(self, pred=lambda x: True):
+    def single(self, pred=identity):
         """
         Returns a single item if it is the only item that is matched by the
         predicate.  Raises an IndexError if more than one item is matched, or
@@ -360,7 +360,7 @@ class From(object):
             raise IndexError("Single must only match one value.")
         return matched[0]
 
-    def singleordefault(self, default, pred=lambda x: True):
+    def singleordefault(self, default, pred=identity):
         """
         Returns the default value if the sequence is empty, otherwise calls
         single.
@@ -396,7 +396,7 @@ class From(object):
                     yield item
         return From(item for item in skipgenerator())
 
-    def sum(self, selector=lambda x: True):
+    def sum(self, selector=identity):
         """
         Returns the sum of items in the sequence that match the given selector.
         """
@@ -481,3 +481,4 @@ class From(object):
         """
         return From(item for i, item in enumerate(self.seq)
                     if pred(item, i))
+
